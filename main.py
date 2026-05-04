@@ -5,10 +5,12 @@ from commands.edit import edit_command
 from commands.exit import exit_command
 from commands.help import help_command
 from commands.list import list_command
+from commands.rename import rename_command
 
 commands: list[Command] = [
     help_command,
     edit_command,
+    rename_command,
     list_command,
     clear_command,
     exit_command,
