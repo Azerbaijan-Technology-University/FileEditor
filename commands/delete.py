@@ -23,4 +23,4 @@ def delete_file(data: CommandData):
         print("Cancelling operation...")
 
 
-delete_command = Command(["Delete", "RM"], "Delete file", delete_file)
+delete_command = Command(["Delete", "Remove", "RM"], "Delete file", delete_file)
