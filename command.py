@@ -1,10 +1,12 @@
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Callable
 
 
 @dataclass
 class CommandData:
     commands: list["Command"]
+    current_path: Path
 
 
 @dataclass

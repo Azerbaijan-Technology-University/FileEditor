@@ -1,10 +1,12 @@
+from pathlib import Path
+
 from command import Command, CommandData
 
 
 class CliEngine:
     def __init__(self, commands: list[Command]) -> None:
         self.commands = commands
-        self.command_data = CommandData(commands)
+        self.command_data = CommandData(commands, Path.cwd())
 
     def run(self) -> None:
         while True:
