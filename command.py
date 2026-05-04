@@ -5,8 +5,8 @@ from typing import Callable
 
 @dataclass
 class CommandData:
-    commands: list["Command"]
     arguments: list[str]
+    commands: list["Command"]
     cwd: Path
 
 
