@@ -9,11 +9,9 @@ class CliEngine:
     def run(self) -> None:
         while True:
             user_input = input("File editor> ")
+            command_map = {
+                name.lower(): cmd for cmd in self.commands for name in cmd.name
+            }
 
-            for command in self.commands:
-                if any(name.lower() == user_input.lower() for name in command.name):
-                    command.action(self.command_data)
-                    break
-                else:
-                    print("Command not found, use help command to see all commands.")
-                    break
+            if user_input in command_map:
+                command_map[user_input].action(self.command_data)

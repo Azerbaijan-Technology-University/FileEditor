@@ -1,9 +1,10 @@
 from cli_engine import CliEngine
 from command import Command
+from commands.exit import exit_command
 from commands.help import help_command
 from commands.list import list_command
 
-commands: list[Command] = [help_command, list_command]
+commands: list[Command] = [help_command, list_command, exit_command]
 
 
 def main() -> None:
