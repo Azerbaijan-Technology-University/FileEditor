@@ -17,3 +17,5 @@ class CliEngine:
 
             if user_input in command_map:
                 command_map[user_input].action(self.command_data)
+            else:
+                print("Command not found, use help command to see list of commands.")
