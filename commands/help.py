@@ -8,4 +8,4 @@ def print_help_message(data: CommandData):
         print(f"{name} - {command.description}")
 
 
-help_command = Command(["Help"], "print this message", print_help_message)
+help_command = Command(["Help"], "Print this message", print_help_message)
