@@ -133,10 +133,10 @@ class Editor:
 
 def open_terminal_editor(file_path: Path) -> None:
     def curses_main(stdscr) -> None:
-        ed = Editor(stdscr, file_path)
+        editor = Editor(stdscr, file_path)
         while True:
-            ed.render()
-            if not ed.update():
+            editor.render()
+            if not editor.update():
                 break
 
     curses.wrapper(curses_main)
