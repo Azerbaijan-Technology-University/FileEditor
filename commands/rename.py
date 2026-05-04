@@ -7,13 +7,13 @@ from command import Command, CommandData
 
 
 def rename_file(data: CommandData):
-    if len(data.arguments) < 1:
+    if len(data.arguments) < 1 or not data.arguments[0].strip():
         print(
             "Provide file name [from] as second argument (Relative to current wroking directory)."
         )
         return
 
-    if len(data.arguments) < 2:
+    if len(data.arguments) < 2 or not data.arguments[1].strip():
         print("Provide file name [to] as second argument.")
         return
 
@@ -24,7 +24,7 @@ def rename_file(data: CommandData):
         print("File does not exist.")
         return
 
-    if not is_valid_filepath(to_path):
+    if not is_valid_filepath(data.arguments[1]):
         print("File path is not valid.")
         return
 
