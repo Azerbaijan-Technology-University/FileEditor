@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 from command import Command, CommandData
 
@@ -10,12 +11,16 @@ class CliEngine:
 
     def run(self) -> None:
         while True:
-            user_input = input("File editor> ")
+            user_input = input("File editor> ").split(" ")
             command_map = {
                 name.lower(): cmd for cmd in self.commands for name in cmd.name
             }
 
-            if user_input in command_map:
-                command_map[user_input].action(CommandData(self.commands, self.cwd))
+            command = user_input[0].lower()
+
+            if command in command_map:
+                command_map[command].action(
+                    CommandData(self.commands, user_input[1:], self.cwd)
+                )
             else:
                 print("Command not found, use help command to see list of commands.")
