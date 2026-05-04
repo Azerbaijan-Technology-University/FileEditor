@@ -1,6 +1,7 @@
 from cli_engine import CliEngine
 from command import Command
 from commands.clear import clear_command
+from commands.delete import delete_command
 from commands.edit import edit_command
 from commands.exit import exit_command
 from commands.help import help_command
@@ -11,6 +12,7 @@ commands: list[Command] = [
     help_command,
     edit_command,
     rename_command,
+    delete_command,
     list_command,
     clear_command,
     exit_command,
