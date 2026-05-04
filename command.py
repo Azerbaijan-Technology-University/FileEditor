@@ -6,7 +6,7 @@ from typing import Callable
 @dataclass
 class CommandData:
     commands: list["Command"]
-    current_path: Path
+    cwd: Path
 
 
 @dataclass
