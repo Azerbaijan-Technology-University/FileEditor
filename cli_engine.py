@@ -6,7 +6,7 @@ from command import Command, CommandData
 class CliEngine:
     def __init__(self, commands: list[Command]) -> None:
         self.commands = commands
-        self.command_data = CommandData(commands, Path.cwd())
+        self.cwd = Path.cwd()
 
     def run(self) -> None:
         while True:
@@ -16,6 +16,6 @@ class CliEngine:
             }
 
             if user_input in command_map:
-                command_map[user_input].action(self.command_data)
+                command_map[user_input].action(CommandData(self.commands, self.cwd))
             else:
                 print("Command not found, use help command to see list of commands.")
