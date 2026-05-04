@@ -3,7 +3,7 @@ import sys
 from command import Command, CommandData
 
 
-def exit_app(data: CommandData):
+def exit_app(_: CommandData):
     sys.exit(0)
 
 
