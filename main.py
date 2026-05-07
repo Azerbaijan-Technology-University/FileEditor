@@ -1,4 +1,5 @@
 from cli_engine import CliEngine
+from commands.change_directory import ChangeDirectoryCommand
 from commands.clear import ClearCommand
 from commands.delete import DeleteCommand
 from commands.edit import EditCommand
@@ -17,6 +18,7 @@ def main() -> None:
         .add_command(RenameCommand)
         .add_command(DeleteCommand)
         .add_command(ListCommand)
+        .add_command(ChangeDirectoryCommand)
         .add_command(ClearCommand)
         .add_command(InfoCommand)
         .add_command(ExitCommand)
