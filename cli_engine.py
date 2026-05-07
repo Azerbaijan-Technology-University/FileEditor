@@ -5,25 +5,23 @@ from command import Command, CommandData
 
 class CliEngine:
     def __init__(self) -> None:
-        self.commands: list[Command] = []
+        self.commands: dict[str, Command] = {}
         self.cwd = Path.cwd()
 
     def add_command(self, cmd: Command) -> "CliEngine":
-        self.commands.append(cmd)
+        for name in cmd.names():
+            self.commands[name.lower()] = cmd
         return self
 
     def run(self) -> None:
         while True:
             user_input = input("File editor> ").split(" ")
-            command_map = {
-                name.lower(): cmd for cmd in self.commands for name in cmd.names()
-            }
+            user_command = user_input[0].lower()
+            command = self.commands.get(user_command)
+            commands = list(set(self.commands.values()))
 
-            command = user_input[0].lower()
-
-            if command in command_map:
-                command_map[command].run(
-                    CommandData(user_input[1:], self.commands, self.cwd)
-                )
+            if command:
+                command.run(CommandData(user_input[1:], commands, self.cwd))
+                continue
             else:
                 print("Command not found, use help command to see list of commands.")
