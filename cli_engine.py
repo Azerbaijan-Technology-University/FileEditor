@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Type
 
 from command import Command, CommandData
 
@@ -8,9 +9,10 @@ class CliEngine:
         self.commands: dict[str, Command] = {}
         self.cwd = Path.cwd()
 
-    def add_command(self, cmd: Command) -> "CliEngine":
-        for name in cmd.names():
-            self.commands[name.lower()] = cmd
+    def add_command(self, cmd: Type[Command]) -> "CliEngine":
+        instance = cmd()
+        for name in instance.names():
+            self.commands[name.lower()] = instance
         return self
 
     def run(self) -> None:
@@ -24,4 +26,6 @@ class CliEngine:
                 command.run(CommandData(user_input[1:], commands, self.cwd))
                 continue
             else:
-                print("Command not found, use help command to see list of commands.")
+                print(
+                    f"Command `{user_command}` not found, use help command to see list of commands."
+                )
