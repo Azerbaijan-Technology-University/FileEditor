@@ -3,11 +3,18 @@ import os
 from command import Command, CommandData
 
 
-def clear_console(data: CommandData):
-    if os.name == "nt":
-        os.system("cls")
-    else:
-        os.system("clear")
+class ClearCommand(Command):
+    def __init__(self) -> None:
+        super().__init__()
 
+    def names(self) -> list[str]:
+        return ["Clear", "CLS"]
 
-clear_command = Command(["Clear", "CLS"], "Clear console", clear_console)
+    def description(self) -> str:
+        return "Clear console"
+
+    def run(self, data: CommandData) -> None:
+        if os.name == "nt":
+            os.system("cls")
+        else:
+            os.system("clear")

@@ -3,8 +3,15 @@ import sys
 from command import Command, CommandData
 
 
-def exit_app(_: CommandData):
-    sys.exit(0)
+class ExitCommand(Command):
+    def __init__(self) -> None:
+        super().__init__()
 
+    def names(self) -> list[str]:
+        return ["Quit", "Exit"]
 
-exit_command = Command(["Quit", "Exit"], "exit app", exit_app)
+    def description(self) -> str:
+        return "exit app"
+
+    def run(self, data: CommandData) -> None:
+        sys.exit(0)

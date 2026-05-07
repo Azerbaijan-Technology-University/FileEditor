@@ -1,26 +1,24 @@
 from cli_engine import CliEngine
-from command import Command
-from commands.clear import clear_command
-from commands.delete import delete_command
-from commands.edit import edit_command
-from commands.exit import exit_command
-from commands.help import help_command
-from commands.list import list_command
-from commands.rename import rename_command
-
-commands: list[Command] = [
-    help_command,
-    edit_command,
-    rename_command,
-    delete_command,
-    list_command,
-    clear_command,
-    exit_command,
-]
+from commands.clear import ClearCommand
+from commands.delete import DeleteCommand
+from commands.edit import EditCommand
+from commands.exit import ExitCommand
+from commands.help import HelpCommand
+from commands.list import ListCommand
+from commands.rename import RenameCommand
 
 
 def main() -> None:
-    cli_engine = CliEngine(commands)
+    cli_engine = (
+        CliEngine()
+        .add_command(HelpCommand())
+        .add_command(EditCommand())
+        .add_command(RenameCommand())
+        .add_command(DeleteCommand())
+        .add_command(ListCommand())
+        .add_command(ClearCommand())
+        .add_command(ExitCommand())
+    )
     cli_engine.run()
 
 

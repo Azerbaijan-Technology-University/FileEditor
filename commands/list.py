@@ -1,14 +1,17 @@
 from command import Command, CommandData
 
 
-def list_files_in_current_directory(data: CommandData):
-    for entry in data.cwd.iterdir():
-        if entry.is_file():
-            print(entry.name)
+class ListCommand(Command):
+    def __init__(self) -> None:
+        super().__init__()
 
+    def names(self) -> list[str]:
+        return ["List", "LS", "DIR"]
 
-list_command = Command(
-    ["List", "LS", "DIR"],
-    "Print list of files in current directory",
-    list_files_in_current_directory,
-)
+    def description(self) -> str:
+        return "Print list of files in current directory"
+
+    def run(self, data: CommandData) -> None:
+        for entry in data.cwd.iterdir():
+            if entry.is_file():
+                print(entry.name)

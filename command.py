@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
 
 
 @dataclass
@@ -10,8 +9,12 @@ class CommandData:
     cwd: Path
 
 
-@dataclass
 class Command:
-    name: list[str]
-    description: str
-    action: Callable[[CommandData], None]
+    def names(self) -> list[str]:
+        return []
+
+    def description(self) -> str:
+        return ""
+
+    def run(self, data: CommandData) -> None:
+        pass

@@ -1,11 +1,18 @@
 from command import Command, CommandData
 
 
-def print_help_message(data: CommandData):
-    print("List of commands:")
-    for command in data.commands:
-        name = ", ".join(command.name)
-        print(f"{name} - {command.description}")
+class HelpCommand(Command):
+    def __init__(self) -> None:
+        super().__init__()
 
+    def names(self) -> list[str]:
+        return ["Help"]
 
-help_command = Command(["Help"], "Print this message", print_help_message)
+    def description(self) -> str:
+        return "Print this message"
+
+    def run(self, data: CommandData) -> None:
+        print("List of commands:")
+        for command in data.commands:
+            name = ", ".join(command.names())
+            print(f"{name} - {command.description()}")

@@ -7,24 +7,31 @@ from command import Command, CommandData
 from terminal_editor import open_terminal_editor
 
 
-def edit_file(data: CommandData):
-    if len(data.arguments) < 1 or not data.arguments[0].strip():
-        print(
-            "Provide file name as second argument (Relative to current wroking directory)."
-        )
-        return
+class EditCommand(Command):
+    def __init__(self) -> None:
+        super().__init__()
 
-    if not is_valid_filepath(data.arguments[0]):
-        print("File path is not valid.")
-        return
+    def names(self) -> list[str]:
+        return ["Edit", "Open"]
 
-    current_file = Path(data.arguments[0])
+    def description(self) -> str:
+        return "Create/Edit file"
 
-    print(f"Editing '{current_file.resolve()}' in 3 seconds.")
-    print("Press Ctrl + S to save.")
-    print("Press Ctrl + Q to quit.")
-    sleep(3)
-    open_terminal_editor(current_file)
+    def run(self, data: CommandData) -> None:
+        if len(data.arguments) < 1 or not data.arguments[0].strip():
+            print(
+                "Provide file name as second argument (Relative to current wroking directory)."
+            )
+            return
 
+        if not is_valid_filepath(data.arguments[0]):
+            print("File path is not valid.")
+            return
 
-edit_command = Command(["Edit", "Open"], "Create/Edit file", edit_file)
+        current_file = Path(data.arguments[0])
+
+        print(f"Editing '{current_file.resolve()}' in 3 seconds.")
+        print("Press Ctrl + S to save.")
+        print("Press Ctrl + Q to quit.")
+        sleep(3)
+        open_terminal_editor(current_file)
