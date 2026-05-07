@@ -20,10 +20,11 @@ class CliEngine:
             user_input = input("File editor> ").split(" ")
             user_command = user_input[0].lower()
             command = self.commands.get(user_command)
-            commands = list(set(self.commands.values()))
 
             if command:
-                command.run(CommandData(user_input[1:], commands, self.cwd))
+                args = user_input[1:]
+                commands = list(set(self.commands.values()))
+                command.run(CommandData(args, commands, self.cwd))
                 continue
             else:
                 print(
