@@ -12,4 +12,4 @@ class ChangeDirectoryCommand(Command):
         return "Change current working directory."
 
     def run(self, data: CommandData) -> None:
-        return super().run(data)
+        raise Exception("Not implemented")
