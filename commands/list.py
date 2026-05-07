@@ -13,5 +13,9 @@ class ListCommand(Command):
 
     def run(self, data: CommandData) -> None:
         for entry in data.cwd.iterdir():
+            if entry.is_dir():
+                print(f"{entry.name}/")
+
+        for entry in data.cwd.iterdir():
             if entry.is_file():
                 print(entry.name)
