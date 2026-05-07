@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -9,12 +10,15 @@ class CommandData:
     cwd: Path
 
 
-class Command:
+class Command(ABC):
+    @abstractmethod
     def names(self) -> list[str]:
-        return []
+        pass
 
+    @abstractmethod
     def description(self) -> str:
-        return ""
+        pass
 
+    @abstractmethod
     def run(self, data: CommandData) -> None:
         pass
